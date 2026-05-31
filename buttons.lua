@@ -1,6 +1,9 @@
 ---@diagnostic disable: duplicate-set-field
 -- Modified code from https://github.com/Foo54/SynthB/blob/main/src/api/useable_joker.lua
 -- which in turn modified it from spectrallib https://github.com/SpectralPack/Spectrallib/blob/main/Entropy/card_buttons.lua ahahaha there is so much going on in here i am NOT touching that
+--
+-- This specific iteration is from https://github.com/wingedcatgirl/basic-buttons
+-- It is intended to be copied into other Balatro mods in its entirety, but please leave these lines in so people can check for an updated version
 
 local myprefix = SMODS.current_mod.prefix
 

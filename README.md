@@ -25,7 +25,7 @@ local button = {
 
 Each button is another table.
 
-Cards can only display 5 buttons in total; it's _already_ getting cramped by that point! If there are more eligible buttons on a Joker at a time than that, a random selection of 5 will be displayed each time the card is clicked.  
+Cards can only display 5 buttons in total (including the vanilla sell button); it's _already_ getting cramped by that point! If there are more eligible buttons on a Joker at a time than that, a random selection of 5 will be displayed each time the card is clicked.  
 That said, it's probably ideal for modders to just... _not_ give their Jokers that many buttons at once. That's so many buttons, y'all.
 
 ### Button arguments

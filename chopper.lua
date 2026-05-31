@@ -1,0 +1,88 @@
+--We put Chopper in here as a reference for writing the LSP more than anything. He doesn't even load, or have text :V
+
+SMODS.Joker {
+    key = "chopper",
+    name = "Chopper Badstone",
+    pronouns = "he_him",
+    rarity = 2,
+    cost = 7,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    demicoloncompat = false,
+    config = {
+        extra = {
+            charge = 0,
+            charge_needed = 10,
+            ready = false
+        }
+    },
+    buttons = {
+        { get_button_args = function(self, card)
+            local args = {
+                can = "buttons_can_use_joker",
+                effect = "buttons_use_joker",
+                handy_insta = "use",
+                title = localize("b_use"),
+                override = "use",
+                id = "use_charged",
+                text = {
+                    { ref_table = card.ability.extra, ref_value = "charge" },
+                    "/",
+                    { ref_table = card.ability.extra, ref_value = "charge_needed" },
+                }
+            }
+            return args
+        end }
+    },
+    use = function (self, card)
+        card.ability.extra.ready = true
+        juice_card_until(card, function ()
+            return card.ability.extra.ready
+        end)
+    end,
+    can_use = function (self, card)
+        return card.ability.extra.charge >= card.ability.extra.charge_needed and not card.ability.extra.ready
+    end,
+    attributes = {
+
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                
+            }
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.stay_flipped and context.to_area == G.hand then
+            if (context.other_card.debuff or context.other_card.facing == "back") and card.ability.extra.charge < card.ability.extra.charge_needed then
+                card.ability.extra.charge = card.ability.extra.charge + 1
+                if card.ability.extra.charge >= card.ability.extra.charge_needed then
+                    card.ability.extra.charge = card.ability.extra.charge_needed
+                    return {
+                        message = "Charged"
+                    }
+                end
+            end
+        end
+
+        if context.final_scoring_step and card.ability.extra.ready then
+            local amt = SMODS.calculate_round_score()
+            card.ability.extra.charge = 0
+            card.ability.extra.ready = false
+
+            return {
+                score = amt,
+                delay = 8,
+                extra = {
+                    blindsize = -amt,
+                    message_card = G.GAME.blind,
+                    delay = 8
+                }
+            }
+        end
+    end
+}

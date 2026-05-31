@@ -3,7 +3,7 @@ An API to give your Jokers buttons and modify the default ones.
 This code was adapted from [SynthB](https://github.com/Foo54/SynthB/blob/main/src/api/useable_joker.lua), which in turn adapted it from [Spectrallib](https://github.com/SpectralPack/Spectrallib/blob/main/Entropy/card_buttons.lua). The idea is to make it easy to use for people who only have something simple in mind, but at the same time modular enough that people who do have something complex in mind can implement it.
 
 ## How to use in your mod
-To access the API, you can either add Basic Buttons as a dependency for your mod, or you can clone `buttons.lua` from this repository and load it unmodified. If you pick the latter option, please add Basic Buttons with its current version number to the "provides" list in your mod's metadata.
+To access the API, you can either add Basic Buttons as a dependency for your mod, or you can clone `buttons.lua` from this repository and load it unmodified. If you pick the latter option, please add Basic Buttons with its current version number to the "provides" list in your mod's metadata. ([Example](https://github.com/wingedcatgirl/Menthol/blob/jokerbuttons/Menthol.json#L15))
 
 ## If you just want usable Jokers and nothing complicated:
 Give your Joker a `use(self, card)` field that performs its function. You may also give it a `can_use(self, card):boolean` field that determines when the use button works; if the field is not defined the Joker will be usable at any time the player is able to use cards at all.

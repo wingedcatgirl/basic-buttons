@@ -45,7 +45,7 @@ local args = {
 }
 
 --Valid types of Text:
-local one_string = string       --If it says the same thing all the time, and doesn't need any formatting.
+local one_string = string   --If it says the same thing all the time, and doesn't need any formatting.
 
 local one_node = {          --If it says the same thing at all times, but needs simple formatting.
     text = string,          --The text to be rendered.
@@ -55,7 +55,7 @@ local one_node = {          --If it says the same thing at all times, but needs 
 
 local several_nodes = { --If it needs to be updated to reflect the gamestate, or if it needs more complex formatting. These nodes will be assembled, in the order given, into a single piece of text. This is used by the vanilla Sell button, to combine the dollar sign with the price.
     string_node,                                        --If this piece of text is simple.
-    { text = string, colour = table, scale = number }   --As with individual nodes, though scale defaults to 0.4.
+    { text = string, colour = table, scale = number }   --As with individual nodes.
     { ref_table = table, ref_value = string, colour = table, scale = number } --For anything that needs to be kept up-to-date; number of use charges or amount of MP or such a thing. The value of `ref_table[ref_value]` will be rendered here and updated every frame.
 }
 ```

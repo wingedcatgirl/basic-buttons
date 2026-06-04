@@ -33,8 +33,8 @@ That said, it's probably ideal for modders to just... _not_ give their Jokers th
 local args = {
     id = string,            --To identify this button, in case another button wants to override it.
     override = string,      --The id of a button this button will replace; generally "use" or "sell", but you can override any button you like.
-    effect = string,        --Name of a `function(e)` in `G.FUNCS` that is run when this button is pressed. `e.config.ref_table` refers to the `card` argument below.
-    can = string,           --Name of a `function(e):boolean` in `G.FUNCS` that runs every frame the card is selected. Generally used to conditionally modify `e.config`; see the default can_use function in `buttons.lua` for an easy example.
+    effect = string,        --Name of a `function(e)` in `G.FUNCS` that is run when this button is pressed. In these functions, `e.config.ref_table` refers to the `card` argument below.
+    can = string,           --Name of a `function(e)` in `G.FUNCS` that runs every frame the card is selected. Generally used to conditionally modify `e.config`; see the default can_use function in `buttons.lua` for an easy example.
     one_press = boolean,    --This button disables itself when pressed. Used by the vanilla sell button to prevent spam-clicking shenanigans.
     title = string,         --Title of the button, in small text above the main text (e.g. "Sell" on the vanilla sell button).
     title_colour = table,   --The color to render the title in; find colors in `G.C` or use `HEX()`. Defaults to `G.C.WHITE`.

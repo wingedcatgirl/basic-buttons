@@ -55,6 +55,7 @@ G.FUNCS.text_ass_filler_button_func = function (e)
     e.config.button = nil
 end
 
+--Anti-redundancy; if you heavily modify this file for any reason, you may wish to adjust this check.
 if G.basic_buttons_activated then
     print("Buttons already provided by "..G.basic_buttons_activated.."; letting them handle it")
     return
@@ -62,7 +63,7 @@ else
     G.basic_buttons_activated = SMODS.current_mod.name
 end
 
-local scales = {
+local scales = { --Not elegant; got these values by manual fiddling. TODO, alternative?
     [1] = 1.1,
     [2] = 1,
     [3] = 0.8,

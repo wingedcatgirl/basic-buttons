@@ -1,13 +1,19 @@
---We put Chopper in here as a reference for writing the LSP more than anything. He doesn't even load, or have text :V
+--We put Chopper in here as a reference for writing the LSP more than anything.
 
 SMODS.Joker {
     key = "chopper",
     name = "Chopper Badstone",
     pronouns = "he_him",
+    loc_txt = {
+        name = "Chopper Badstone",
+        text = {
+            "yadda yadda etc"
+        }
+    },
     rarity = 2,
     cost = 7,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
@@ -16,6 +22,8 @@ SMODS.Joker {
         extra = {
             charge = 0,
             charge_needed = 10,
+            cardhit_gain = 1,
+            trigger_gain = 3,
             ready = false
         }
     },
@@ -28,6 +36,7 @@ SMODS.Joker {
                 title = localize("b_use"),
                 override = "use",
                 id = "use_charged",
+                minw = 1.25,
                 text = {
                     { ref_table = card.ability.extra, ref_value = "charge" },
                     "/",
@@ -50,22 +59,40 @@ SMODS.Joker {
 
     },
     loc_vars = function(self, info_queue, card)
+        local key = self.key
         return {
+            key = key,
             vars = {
-                
+                card.ability.extra.cardhit_gain,
+                card.ability.extra.trigger_gain,
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.stay_flipped and context.to_area == G.hand then
-            if (context.other_card.debuff or context.other_card.facing == "back") and card.ability.extra.charge < card.ability.extra.charge_needed then
-                card.ability.extra.charge = card.ability.extra.charge + 1
-                if card.ability.extra.charge >= card.ability.extra.charge_needed then
-                    card.ability.extra.charge = card.ability.extra.charge_needed
-                    return {
-                        message = "Charged"
-                    }
+        if card.highlighted then card:highlight(false) end --kludge for an incomprehensible crash that happens when updating text
+
+        local drawn = context.hand_drawn or context.other_drawn
+        if drawn and card.ability.extra.charge < card.ability.extra.charge_needed then
+            for i,other_card in ipairs(drawn) do
+                if (other_card.debuff or other_card.facing == "back")then
+                    card.ability.extra.charge = card.ability.extra.charge + card.ability.extra.cardhit_gain
                 end
+            end
+            if card.ability.extra.charge >= card.ability.extra.charge_needed then
+                card.ability.extra.charge = card.ability.extra.charge_needed
+                return {
+                    message = "Charged!"
+                }
+            end
+        end
+
+        if (context.joker_main or context.debuffed_hand) and G.GAME.blind.triggered and card.ability.extra.charge < card.ability.extra.charge_needed then
+            card.ability.extra.charge = card.ability.extra.charge + card.ability.extra.trigger_gain
+            if card.ability.extra.charge >= card.ability.extra.charge_needed then
+                card.ability.extra.charge = card.ability.extra.charge_needed
+                return {
+                    message = "Charged!"
+                }
             end
         end
 
@@ -76,11 +103,27 @@ SMODS.Joker {
 
             return {
                 score = amt,
-                delay = 8,
+                delay = 4,
+                remove_default_message = true,
+                message = localize{
+                    type = "variable",
+                    key = "a_score",
+                    vars = {amt},
+                },
+                sound = "gong",
+                volume = 0.5,
                 extra = {
                     blindsize = -amt,
                     message_card = G.GAME.blind,
-                    delay = 8
+                    delay = 4,
+                    remove_default_message = true,
+                    sound = "gong",
+                    volume = 0.5,
+                    message = localize{
+                        type = "variable",
+                        key = "a_blind_size",
+                        vars = {"-"..number_format(amt)},
+                    },
                 }
             }
         end

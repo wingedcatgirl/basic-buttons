@@ -129,7 +129,7 @@ local function gen_button(args, card, scale_down)
                         n = G.UIT.C,
                         config = button_config,
                         nodes = {
-                            { n = G.UIT.B, config = { w = 0.1, minh = 0.2 } },
+                            { n = G.UIT.B, config = { w = 0.1, h = 0.4 } },
                             {
                                 n = G.UIT.C,
                                 config = { align = "tm" },

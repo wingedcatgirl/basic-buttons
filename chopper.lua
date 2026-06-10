@@ -1,4 +1,5 @@
 --We put Chopper in here as a reference for writing the LSP more than anything.
+if not next(SMODS.find_mod("DebugPlus")) then return end
 
 SMODS.Joker {
     key = "chopper",

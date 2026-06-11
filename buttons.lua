@@ -21,7 +21,7 @@ G.FUNCS[myprefix .. "_can_use_joker"] = function(e)
         and G.STATE ~= G.STATES.HAND_PLAYED and G.STATE ~= G.STATES.DRAW_TO_HAND and G.STATE ~= G.STATES.PLAY_TAROT
         and not (((G.play and #G.play.cards > 0) or (G.CONTROLLER.locked) or (G.GAME.STOP_USE and G.GAME.STOP_USE > 0)))
     then
-        e.config.colour = G.C.ORANGE
+        e.config.colour = e.config.bg_colour or G.C.ORANGE
         e.config.button = myprefix .. "_use_joker"
     else
         e.config.colour = G.C.UI.BACKGROUND_INACTIVE
@@ -77,7 +77,7 @@ local function gen_button(args, card, scale_down)
     card = card or args.card
     local minw = math.max(scales[(scale_down + 1)], args.minw or 0)
     if args.maxw then minw = math.min(minw, args.maxw) end
-    local button_config = { ref_table = card, align = "cr", padding = 0.1-(scale_down*0.01), r = 0.08, minw = minw, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta }
+    local button_config = { ref_table = card, align = "cr", padding = 0.1-(scale_down*0.01), r = 0.08, minw = minw, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta, bg_colour = args.bg_colour }
     local title = args.title and {
         n = G.UIT.R,
         config = { align = "cm", maxw = 1.25, debug = "gentitle" },

@@ -39,6 +39,7 @@ local args = {
     title = string,         --Title of the button, in small text above the main text (e.g. "Sell" on the vanilla sell button).
     title_colour = table,   --The color to render the title in; find colors in `G.C` or use `HEX()`. Defaults to `G.C.WHITE`.
     title_scale = number,   --Size of the text to be rendered. Defaults to 0.4 in this context.
+    bg_colour = table,      --Color of the button's background when it can be pressed. Defaults to G.C.ORANGE.
     handy_insta = string,   --Defines what insta-action Handy performs on this card? ngl i don't actually know what this string refers to, but if you do, you can define it here.
     card = Card,            --The card which this button affects. Defaults to the card to which it is attached.
     text = Text,            --This one is a bit overloaded. See more details below.

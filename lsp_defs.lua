@@ -37,6 +37,7 @@ function HEX(hex) end
 ---@field title? string Title of the button, above the main text (e.g. "Sell" on the sell button)
 ---@field title_colour? ColorRGBA Color of the title text
 ---@field title_scale? number Size of the title text; default 0.4
+---@field bg_colour? ColorRGBA Color of the button when active, default `G.C.ORANGE` (aka rgb hex #fda200)
 ---@field text TextNodes|string Text of the button; a string, args for a single node, or a table of args for nodes
 
 ---@class SMODS.Center

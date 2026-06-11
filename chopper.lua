@@ -42,7 +42,8 @@ SMODS.Joker {
                     { ref_table = card.ability.extra, ref_value = "charge" },
                     "/",
                     { ref_table = card.ability.extra, ref_value = "charge_needed" },
-                }
+                },
+                bg_colour = G.C.RED
             }
             return args
         end }
@@ -70,8 +71,6 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if card.highlighted then card:highlight(false) end --kludge for an incomprehensible crash that happens when updating text
-
         local drawn = context.hand_drawn or context.other_drawn
         if drawn and card.ability.extra.charge < card.ability.extra.charge_needed then
             for i,other_card in ipairs(drawn) do

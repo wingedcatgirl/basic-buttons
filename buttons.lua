@@ -24,7 +24,7 @@ G.FUNCS[myprefix .. "_can_use_joker"] = function(e)
         e.config.colour = e.config.bg_colour or G.C.ORANGE
         e.config.button = myprefix .. "_use_joker"
     else
-        e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.colour = e.config.bg_colour_inactive or G.C.UI.BACKGROUND_INACTIVE
         e.config.button = nil
     end
 end
@@ -77,7 +77,7 @@ local function gen_button(args, card, scale_down)
     card = card or args.card
     local minw = math.max(scales[(scale_down + 1)], args.minw or 0)
     if args.maxw then minw = math.min(minw, args.maxw) end
-    local button_config = { ref_table = card, align = "cr", padding = 0.1-(scale_down*0.01), r = 0.08, minw = minw, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta, bg_colour = args.bg_colour }
+    local button_config = { ref_table = card, align = "cr", padding = 0.1-(scale_down*0.01), r = 0.08, minw = minw, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta, bg_colour = args.bg_colour, bg_colour_inactive = args.bg_colour_inactive }
     local title = args.title and {
         n = G.UIT.R,
         config = { align = "cm", maxw = 1.25, debug = "gentitle" },

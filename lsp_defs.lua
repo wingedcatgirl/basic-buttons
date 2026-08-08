@@ -38,10 +38,12 @@ function HEX(hex) end
 ---@field title_colour? ColorRGBA Color of the title text
 ---@field title_scale? number Size of the title text; default 0.4
 ---@field bg_colour? ColorRGBA Color of the button when active, default `G.C.ORANGE` (aka rgb hex #fda200)
+---@field bg_colour_inactive? ColorRGBA Color of the button when inactive, default `G.C.UI.BACKGROUND_INACTIVE` (aka rgb hex #666666)
 ---@field text TextNodes|string Text of the button; a string, args for a single node, or a table of args for nodes
 
----@class SMODS.Center
+---@class SMODS.Joker
 ---@field buttons? {get_button_args: (fun(self:SMODS.Joker|table, card:SMODS.Joker|table):ButtonData|nil), (hide: fun(self:SMODS.Joker|table, card:SMODS.Joker|table):boolean|nil)}[]
 ---@field hide_sell_button? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):boolean
 ---@field hide_use_button? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):boolean
 ---@field use? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):nil
+---@field can_use? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):boolean

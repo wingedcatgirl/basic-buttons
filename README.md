@@ -31,18 +31,19 @@ That said, it's probably ideal for modders to just... _not_ give their Jokers th
 ### Button arguments
 ```lua
 local args = {
-    id = string,            --To identify this button, in case another button wants to override it.
-    override = string,      --The id of a button this button will replace; generally "use" or "sell", but you can override any button you like.
-    effect = string,        --Name of a `function(e)` in `G.FUNCS` that is run when this button is pressed. In these functions, `e.config.ref_table` refers to the `card` argument below.
-    can = string,           --Name of a `function(e)` in `G.FUNCS` that runs every frame the card is selected. Generally used to conditionally modify `e.config`; see the default can_use function in `buttons.lua` for an easy example.
-    one_press = boolean,    --This button disables itself when pressed. Used by the vanilla sell button to prevent spam-clicking shenanigans.
-    title = string,         --Title of the button, in small text above the main text (e.g. "Sell" on the vanilla sell button).
-    title_colour = table,   --The color to render the title in; find colors in `G.C` or use `HEX()`. Defaults to `G.C.WHITE`.
-    title_scale = number,   --Size of the text to be rendered. Defaults to 0.4 in this context.
-    bg_colour = table,      --Color of the button's background when it can be pressed. Defaults to G.C.ORANGE.
-    handy_insta = string,   --Defines what insta-action Handy performs on this card? ngl i don't actually know what this string refers to, but if you do, you can define it here.
-    card = Card,            --The card which this button affects. Defaults to the card to which it is attached.
-    text = Text,            --This one is a bit overloaded. See more details below.
+    id = string,                --To identify this button, in case another button wants to override it.
+    override = string,          --The id of a button this button will replace; generally "use" or "sell", but you can override any button you like.
+    effect = string,            --Name of a `function(e)` in `G.FUNCS` that is run when this button is pressed. In these functions, `e.config.ref_table` refers to the `card` argument below.
+    can = string,               --Name of a `function(e)` in `G.FUNCS` that runs every frame the card is selected. Generally used to conditionally modify `e.config`; see the default can_use function in `buttons.lua` for an easy example.
+    one_press = boolean,        --This button disables itself when pressed. Used by the vanilla sell button to prevent spam-clicking shenanigans.
+    title = string,             --Title of the button, in small text above the main text (e.g. "Sell" on the vanilla sell button).
+    title_colour = table,       --The color to render the title in; find colors in `G.C` or use `HEX()`. Defaults to `G.C.WHITE`.
+    title_scale = number,       --Size of the text to be rendered. Defaults to 0.4 in this context.
+    bg_colour = table,          --Color of the button's background when it can be pressed. Defaults to G.C.ORANGE.
+    bg_colour_inactive = table, --Color of the button's background when it can not be pressed. Defaults to G.C.UI.BACKGROUND_INACTIVE.
+    handy_insta = string,       --Defines what insta-action Handy performs on this card? ngl i don't actually know what this string refers to, but if you do, you can define it here.
+    card = Card,                --The card which this button affects. Defaults to the card to which it is attached.
+    text = Text,                --This one is a bit overloaded. See more details below.
 }
 
 --Valid types of Text:

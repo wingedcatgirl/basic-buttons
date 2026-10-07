@@ -1,0 +1,9 @@
+{
+    "name": "BasicButtons",
+    "description": "Adds Use buttons to Jokers, and allows defining custom buttons.",
+    "version_number": "0.1.4",
+    "dependencies": [
+        "Steamodded-Steamodded-1.827.2"
+    ],
+    "website_url": "https://github.com/wingedcatgirl/basic-buttons"
+}
